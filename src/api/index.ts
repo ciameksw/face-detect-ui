@@ -1,4 +1,6 @@
-export const detectFaces = async (file: File) => {
+import { APIResponseType } from "../types/apiResponse";
+
+export const detectFaces = async (file: File): Promise<APIResponseType> => {
   const api_key = process.env.REACT_APP_API_KEY as string;
   const api_secret = process.env.REACT_APP_API_SECRET as string;
 
@@ -6,6 +8,7 @@ export const detectFaces = async (file: File) => {
   formData.append("api_key", api_key);
   formData.append("api_secret", api_secret);
   formData.append("urls", file);
+  formData.append("attributes", "all");
 
   const response = await fetch(
     "https://api.skybiometry.com/fc/faces/detect.json",
@@ -15,7 +18,7 @@ export const detectFaces = async (file: File) => {
     }
   );
 
-  const body = await response.json();
+  const body = await response.json() as APIResponseType;
 
-  console.log(body);
+  return body;
 };

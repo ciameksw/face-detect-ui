@@ -7,14 +7,32 @@ const ControlsDiv = styled.div`
   width: 100vw;
 `;
 
+const StyledForm = styled.form`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+`;
 
-const Controls = () => {
+
+const Controls = (props: {fileSetter: any, fileUploader: () => Promise<void>}) => {
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files && event.target.files[0];
+        props.fileSetter(file);
+    }
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        props.fileUploader();
+    }
 
     return <ControlsDiv>
-        <form>
-            <input type="file" name="file" id="file" />
+        <StyledForm onSubmit={handleSubmit}>
+            <input type="file" name="file" id="file" onChange={handleFileChange} accept=".png, .jpg, .jpeg, .bmp, .jp2"/>
             <input type="submit" value="Upload" />
-        </form>
+        </StyledForm>
     </ControlsDiv>
 }
 
