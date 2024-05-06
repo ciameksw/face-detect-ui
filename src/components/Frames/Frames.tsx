@@ -29,22 +29,27 @@ const Frame = styled.div.attrs<{
   position: absolute;
   border: 2px solid green;
   cursor: pointer;
+  color: green;
+  font-size: 1.2rem;
+  font-weight: bold;
 `;
 
 const Frames = () => {
   const fileAndData = useContext(FileAndDataContext);
   const attributes = useContext(AttributesContext);
 
-  const onFrameClick = (tag: TagType) => {
+  const onFrameClick = (tag: TagType, n: number) => {
     if (attributes) {
       attributes.setAttributes(tag.attributes);
+      attributes.setFaceNumber(n);
     }
   };
 
   return (
     <FramesDiv>
       {fileAndData.rawData &&
-        fileAndData.rawData.tags.flatMap((tag) => {
+        fileAndData.rawData.tags.flatMap((tag, i) => {
+          const n = i + 1;
           return [
             <Frame
               key={tag.tid}
@@ -54,8 +59,8 @@ const Frames = () => {
               pitch={tag.pitch}
               roll={tag.roll}
               yaw={tag.yaw}
-              onClick={() => onFrameClick(tag)}
-            />,
+              onClick={() => onFrameClick(tag, n)}
+            >{n}</Frame>,
           ];
         })}
     </FramesDiv>

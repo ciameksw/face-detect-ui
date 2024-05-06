@@ -10,12 +10,15 @@ import { AttributesContext } from "../../contexts/AttributesContext";
 const App = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [data, setData] = useState<PhotoType | null>(null);
+
   const [currentAttributes, setCurrentAttributes] = useState<AttributeType>({});
+  const [faceNumber, setFaceNumber] = useState<number | null>(null);
 
   const fileSetHandler = (file: File) => {
     setSelectedFile(file);
     data && setData(null);
     setCurrentAttributes({});
+    setFaceNumber(null);
   };
 
   const fileUploadHandler = async () => {
@@ -31,6 +34,8 @@ const App = () => {
   const attributes = {
     data: currentAttributes,
     setAttributes: setCurrentAttributes,
+    faceNumber: faceNumber,
+    setFaceNumber: setFaceNumber,
   };
 
   return (

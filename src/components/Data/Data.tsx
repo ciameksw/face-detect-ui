@@ -78,7 +78,11 @@ const Data = () => {
 
   return (
     <DataDiv>
-      <FaceDiv>Face 0</FaceDiv>
+      <FaceDiv>
+        {attributes && attributes.faceNumber
+          ? "Face " + attributes.faceNumber
+          : ""}
+      </FaceDiv>
       <AttributesDiv>
         {data.map((attribute) => (
           <Attribute key={attribute.attribute}>

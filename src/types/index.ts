@@ -7,6 +7,8 @@ export type FileAndDataType = {
 export type AttributesContextType = {
   data: AttributeType;
   setAttributes: (attributes: AttributeType) => void;
+  faceNumber: number | null;
+  setFaceNumber: (faceNumber: number) => void;
 };
 
 // AttributesList
