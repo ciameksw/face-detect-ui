@@ -33,7 +33,7 @@ type TagType = {
   mouth_center: ItemData;
   nose: ItemData;
   pitch: number;
-  points: any;
+  points: ItemData[];
   recognizable: boolean;
   roll: number;
   similarities: any;
