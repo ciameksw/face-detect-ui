@@ -5,9 +5,22 @@ import Frames from "../Frames/Frames";
 
 const DisplayDiv = styled.div`
   background-color: green;
+  margin: 0 5vw;
+`;
+
+const FileNameDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
+  background-color: #f0f0f0;
+  text-align: center;
+  font-size: 1.2rem;
+`;
+
+const ImgDiv = styled.div`
   height: 60vh;
   width: 40vw;
-  margin: 0 5vw;
 `;
 
 const ImageContainer = styled.div`
@@ -61,19 +74,22 @@ const Display = () => {
 
   return (
     <DisplayDiv>
-      {imageUrl && (
-        <ImageContainer>
-          <StyledImage
-            src={imageUrl}
-            ref={imgRef}
-            alt="Uploaded content"
-            onLoad={handleImageLoad}
-          />
-          <Overlay ref={overlayRef}>
-            <Frames />
-          </Overlay>
-        </ImageContainer>
-      )}
+      <FileNameDiv>{fileAndData.file && fileAndData.file.name}</FileNameDiv>
+      <ImgDiv>
+        {imageUrl && (
+          <ImageContainer>
+            <StyledImage
+              src={imageUrl}
+              ref={imgRef}
+              alt="Uploaded content"
+              onLoad={handleImageLoad}
+            />
+            <Overlay ref={overlayRef}>
+              <Frames />
+            </Overlay>
+          </ImageContainer>
+        )}
+      </ImgDiv>
     </DisplayDiv>
   );
 };

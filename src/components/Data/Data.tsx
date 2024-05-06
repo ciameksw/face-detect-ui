@@ -6,10 +6,24 @@ import { mapAttributeValues } from "../../utils";
 
 const DataDiv = styled.div`
   background-color: red;
-  height: 60vh;
-  width: 40vw;
   margin: 0 5vw;
 
+  overflow-y: auto;
+`;
+
+const FaceDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
+  background-color: #f0f0f0;
+  text-align: center;
+  font-size: 1.2rem;
+`;
+
+const AttributesDiv = styled.div`
+  height: 60vh;
+  width: 40vw;
   overflow-y: auto;
 `;
 
@@ -48,7 +62,6 @@ const Confidence = styled.div.attrs<{ confidence: number }>((props) => ({
   height: 100%;
 `;
 
-
 const Data = () => {
   const [data, setData] = useState<Array<AttributesListType>>([]);
   const attributes = useContext(AttributesContext);
@@ -65,17 +78,20 @@ const Data = () => {
 
   return (
     <DataDiv>
-      {data.map((attribute) => (
-        <Attribute key={attribute.attribute}>
-          {attribute.attribute}: {attribute.value}
-          <Wrapper>
-            <ConfidenceContainer>
-              <Confidence confidence={attribute.confidence} />
-            </ConfidenceContainer>
-            <span>{attribute.confidence}%</span>
-          </Wrapper>
-        </Attribute>
-      ))}
+      <FaceDiv>Face 0</FaceDiv>
+      <AttributesDiv>
+        {data.map((attribute) => (
+          <Attribute key={attribute.attribute}>
+            {attribute.attribute}: {attribute.value}
+            <Wrapper>
+              <ConfidenceContainer>
+                <Confidence confidence={attribute.confidence} />
+              </ConfidenceContainer>
+              <span>{attribute.confidence}%</span>
+            </Wrapper>
+          </Attribute>
+        ))}
+      </AttributesDiv>
     </DataDiv>
   );
 };
