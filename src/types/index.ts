@@ -1,11 +1,19 @@
+// Context types
 export type FileAndDataType = {
   file: File | null;
   rawData: PhotoType | null;
 };
 
 export type AttributesContextType = {
-  attributes: Attribute;
-  setAttributes: (attributes: Attribute) => void;
+  data: AttributeType;
+  setAttributes: (attributes: AttributeType) => void;
+};
+
+// AttributesList
+export type AttributesListType = {
+  attribute: string;
+  value: string;
+  confidence: number;
 };
 
 // Response from the API types
@@ -37,12 +45,12 @@ export type AttributeValue = {
   confidence: number;
 };
 
-export type Attribute = {
+export type AttributeType = {
   [key: string]: AttributeValue | { [key: string]: AttributeValue };
 };
 
 export type TagType = {
-  attributes: Attribute;
+  attributes: AttributeType;
   center: { x: number; y: number };
   confirmed: boolean;
   eye_left: ItemData;

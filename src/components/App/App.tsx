@@ -3,14 +3,14 @@ import { detectFaces } from "../../api";
 import Controls from "../Controls/Controls";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import { Attribute, PhotoType } from "../../types";
+import { AttributeType, PhotoType } from "../../types";
 import { FileAndDataContext } from "../../contexts/FileAndDataContext";
 import { AttributesContext } from "../../contexts/AttributesContext";
 
 const App = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [data, setData] = useState<PhotoType | null>(null);
-  const [currentAttributes, setCurrentAttributes] = useState<Attribute>({});
+  const [currentAttributes, setCurrentAttributes] = useState<AttributeType>({});
 
   const fileSetHandler = (file: File) => {
     setSelectedFile(file);
@@ -29,7 +29,7 @@ const App = () => {
 
   const fileAndData = { file: selectedFile, rawData: data };
   const attributes = {
-    attributes: currentAttributes,
+    data: currentAttributes,
     setAttributes: setCurrentAttributes,
   };
 
