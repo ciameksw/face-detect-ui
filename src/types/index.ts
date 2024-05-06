@@ -1,6 +1,6 @@
-export type PhotoAndDataType = {
+export type FileAndDataType = {
   file: File | null;
-  data: PhotoType | null;
+  rawData: PhotoType | null;
 };
 
 

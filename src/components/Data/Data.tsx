@@ -13,7 +13,7 @@ const DataDiv = styled.div`
 const Data = () => {
     const FileAndData = useContext(FileAndDataContext);
 
-    return <DataDiv>{JSON.stringify(FileAndData.data)}</DataDiv>
+    return <DataDiv>{JSON.stringify(FileAndData.rawData)}</DataDiv>
 };
 
 export default Data;

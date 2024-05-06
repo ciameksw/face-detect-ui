@@ -1,4 +1,4 @@
 import { createContext } from 'react';
-import { PhotoAndDataType } from '../types';
+import { FileAndDataType } from '../types';
 
-export const FileAndDataContext = createContext<PhotoAndDataType>({file: null, data: null});
+export const FileAndDataContext = createContext<FileAndDataType>({file: null, rawData: null});

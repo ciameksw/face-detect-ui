@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { FileAndDataContext } from "../../contexts/FileAndDataContext";
+import Points from "../Frames/Frames";
 
 const DisplayDiv = styled.div`
   background-color: green;
@@ -28,7 +29,6 @@ const StyledImage = styled.img`
 
 const Overlay = styled.div`
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.7);
 `;
 
 const Display = () => {
@@ -69,7 +69,7 @@ const Display = () => {
             alt="Uploaded content"
             onLoad={handleImageLoad}
           />
-          <Overlay ref={overlayRef}></Overlay>
+          <Overlay ref={overlayRef}><Points/></Overlay>
         </ImageContainer>
       )}
     </DisplayDiv>

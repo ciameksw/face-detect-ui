@@ -24,7 +24,7 @@ const App = () => {
     setData(res.photos[0]);
   };
 
-  const fileAndData = { file: selectedFile, data };
+  const fileAndData = { file: selectedFile, rawData: data };
 
   return (
     <div>
