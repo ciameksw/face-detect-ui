@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { PhotoType } from "../../types/apiResponse";
+import { useContext } from "react";
+import { FileAndDataContext } from "../../contexts/FileAndDataContext";
 
 const DataDiv = styled.div`
   background-color: red;
@@ -9,8 +10,10 @@ const DataDiv = styled.div`
 
 `;
 
-const Data = (props: {data: PhotoType | null}) => {
-    return <DataDiv>{JSON.stringify(props.data)}</DataDiv>
+const Data = () => {
+    const FileAndData = useContext(FileAndDataContext);
+
+    return <DataDiv>{JSON.stringify(FileAndData.data)}</DataDiv>
 };
 
 export default Data;

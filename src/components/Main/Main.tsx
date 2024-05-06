@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Display from "../Display/Display";
 import Data from "../Data/Data";
-import { PhotoType } from "../../types/apiResponse";
 
 const MainDiv = styled.div`
   background-color: #bbbbbb;
@@ -14,11 +13,12 @@ const MainDiv = styled.div`
   align-items: center;
 `;
 
-const Main = (props: {file: File | null, data: PhotoType | null}) => {
+const Main = () => {
+
 
     return <MainDiv>
-        <Display file={props.file} data={props.data}></Display>
-        <Data data={props.data}></Data>
+        <Display></Display>
+        <Data></Data>
     </MainDiv>
 };
 

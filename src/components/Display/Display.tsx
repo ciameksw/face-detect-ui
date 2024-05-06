@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { PhotoType } from "../../types/apiResponse";
+import { FileAndDataContext } from "../../contexts/FileAndDataContext";
 
 const DisplayDiv = styled.div`
   background-color: green;
@@ -31,16 +31,18 @@ const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-const Display = (props: { file: File | null; data: PhotoType | null }) => {
+const Display = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
+  const fileAndData = useContext(FileAndDataContext);
+
   useEffect(() => {
-    if (props.file) {
-      setImageUrl(URL.createObjectURL(props.file));
+    if (fileAndData.file) {
+      setImageUrl(URL.createObjectURL(fileAndData.file));
     }
-  }, [props.file]);
+  }, [fileAndData.file]);
 
   const handleImageLoad = () => {
     if (imgRef.current && overlayRef.current) {

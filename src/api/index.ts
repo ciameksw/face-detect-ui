@@ -1,4 +1,4 @@
-import { APIResponseType } from "../types/apiResponse";
+import { APIResponseType } from "../types";
 
 export const detectFaces = async (file: File): Promise<APIResponseType> => {
   const api_key = process.env.REACT_APP_API_KEY as string;

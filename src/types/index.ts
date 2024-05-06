@@ -1,3 +1,10 @@
+export type PhotoAndDataType = {
+  file: File | null;
+  data: PhotoType | null;
+};
+
+
+// Response from the API types
 export type APIResponseType = {
   status: string;
   usage: UsageType;
