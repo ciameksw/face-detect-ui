@@ -3,16 +3,19 @@ import { detectFaces } from "../../api";
 import Controls from "../Controls/Controls";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import { PhotoType } from "../../types";
+import { Attribute, PhotoType } from "../../types";
 import { FileAndDataContext } from "../../contexts/FileAndDataContext";
+import { AttributesContext } from "../../contexts/AttributesContext";
 
 const App = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [data, setData] = useState<PhotoType | null>(null);
+  const [currentAttributes, setCurrentAttributes] = useState<Attribute>({});
 
   const fileSetHandler = (file: File) => {
     setSelectedFile(file);
     data && setData(null);
+    setCurrentAttributes({});
   };
 
   const fileUploadHandler = async () => {
@@ -25,6 +28,10 @@ const App = () => {
   };
 
   const fileAndData = { file: selectedFile, rawData: data };
+  const attributes = {
+    attributes: currentAttributes,
+    setAttributes: setCurrentAttributes,
+  };
 
   return (
     <div>
@@ -33,7 +40,11 @@ const App = () => {
         fileUploader={fileUploadHandler}
       ></Controls>
       <FileAndDataContext.Provider value={fileAndData}>
-        <Main />
+        <AttributesContext.Provider
+          value={attributes}
+        >
+          <Main />
+        </AttributesContext.Provider>
       </FileAndDataContext.Provider>
       <Footer></Footer>
     </div>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useContext } from "react";
-import { FileAndDataContext } from "../../contexts/FileAndDataContext";
+import { AttributesContext } from "../../contexts/AttributesContext";
 
 const DataDiv = styled.div`
   background-color: red;
@@ -11,9 +11,9 @@ const DataDiv = styled.div`
 `;
 
 const Data = () => {
-    const FileAndData = useContext(FileAndDataContext);
-
-    return <DataDiv>{JSON.stringify(FileAndData.rawData)}</DataDiv>
+    const attributes = useContext(AttributesContext);
+    console.log(attributes?.attributes)
+    return <DataDiv>{JSON.stringify(attributes?.attributes)}</DataDiv>
 };
 
 export default Data;

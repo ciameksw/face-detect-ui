@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { FileAndDataContext } from "../../contexts/FileAndDataContext";
-import Points from "../Frames/Frames";
+import Frames from "../Frames/Frames";
 
 const DisplayDiv = styled.div`
   background-color: green;
@@ -53,9 +53,9 @@ const Display = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('resize', handleImageLoad);
+    window.addEventListener("resize", handleImageLoad);
     return () => {
-      window.removeEventListener('resize', handleImageLoad);
+      window.removeEventListener("resize", handleImageLoad);
     };
   }, []);
 
@@ -69,7 +69,9 @@ const Display = () => {
             alt="Uploaded content"
             onLoad={handleImageLoad}
           />
-          <Overlay ref={overlayRef}><Points/></Overlay>
+          <Overlay ref={overlayRef}>
+            <Frames />
+          </Overlay>
         </ImageContainer>
       )}
     </DisplayDiv>

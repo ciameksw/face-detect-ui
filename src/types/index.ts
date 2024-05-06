@@ -3,6 +3,10 @@ export type FileAndDataType = {
   rawData: PhotoType | null;
 };
 
+export type AttributesContextType = {
+  attributes: Attribute;
+  setAttributes: (attributes: Attribute) => void;
+};
 
 // Response from the API types
 export type APIResponseType = {
@@ -28,8 +32,17 @@ export type PhotoType = {
   tags: TagType[];
 };
 
-type TagType = {
-  attributes: { face: { value: string; confidence: number } };
+export type AttributeValue = {
+  value: string;
+  confidence: number;
+};
+
+export type Attribute = {
+  [key: string]: AttributeValue | { [key: string]: AttributeValue };
+};
+
+export type TagType = {
+  attributes: Attribute;
   center: { x: number; y: number };
   confirmed: boolean;
   eye_left: ItemData;

@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { FileAndDataContext } from "../../contexts/FileAndDataContext";
+import { TagType } from "../../types";
+import { AttributesContext } from "../../contexts/AttributesContext";
 
 const FramesDiv = styled.div`
   width: 100%;
@@ -26,10 +28,18 @@ const Frame = styled.div.attrs<{
 }))`
   position: absolute;
   border: 2px solid green;
+  cursor: pointer;
 `;
 
 const Frames = () => {
   const fileAndData = useContext(FileAndDataContext);
+  const attributes = useContext(AttributesContext);
+
+  const onFrameClick = (tag: TagType) => {
+    if (attributes) {
+      attributes.setAttributes(tag.attributes);
+    }
+  };
 
   return (
     <FramesDiv>
@@ -44,6 +54,7 @@ const Frames = () => {
               pitch={tag.pitch}
               roll={tag.roll}
               yaw={tag.yaw}
+              onClick={() => onFrameClick(tag)}
             />,
           ];
         })}
