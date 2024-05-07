@@ -5,7 +5,6 @@ import { AttributesListType } from "../../types";
 import { mapAttributeValues } from "../../utils";
 
 const DataDiv = styled.div`
-  background-color: red;
   margin: 0 5vw;
 
   overflow-y: auto;
@@ -16,12 +15,13 @@ const FaceDiv = styled.div`
   align-items: center;
   justify-content: center;
   height: 5vh;
-  background-color: #f0f0f0;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: bold;
 `;
 
 const AttributesDiv = styled.div`
+  background-color: rgba(0, 0, 0, 0.2);
   height: 60vh;
   width: 40vw;
   overflow-y: auto;
@@ -32,7 +32,6 @@ const Attribute = styled.div`
   font-weight: bold;
   width: 100%;
   text-align: center;
-  color: white;
   margin-top: 0.8rem;
 `;
 
@@ -48,8 +47,8 @@ const Wrapper = styled.div`
 `;
 
 const ConfidenceContainer = styled.div`
-  background-color: grey;
-  border: 1px solid black;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
   height: 1rem;
   width: 85%;
   margin-left: 1rem;
@@ -58,7 +57,8 @@ const ConfidenceContainer = styled.div`
 const Confidence = styled.div.attrs<{ confidence: number }>((props) => ({
   style: { width: `${props.confidence}%` },
 }))`
-  background-color: green;
+  background-color: #e3e3e3;
+  border-radius: 5px;
   height: 100%;
 `;
 

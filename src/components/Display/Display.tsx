@@ -4,7 +4,6 @@ import { FileAndDataContext } from "../../contexts/FileAndDataContext";
 import Frames from "../Frames/Frames";
 
 const DisplayDiv = styled.div`
-  background-color: green;
   margin: 0 5vw;
 `;
 
@@ -13,12 +12,13 @@ const FileNameDiv = styled.div`
   align-items: center;
   justify-content: center;
   height: 5vh;
-  background-color: #f0f0f0;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: bold;
 `;
 
 const ImgDiv = styled.div`
+  background-color: rgba(0, 0, 0, 0.2);
   height: 60vh;
   width: 40vw;
 `;
@@ -65,6 +65,15 @@ const Display = () => {
     }
   };
 
+  const truncate = (str: string) => {
+    if (str.length > 25) {
+      const start = str.slice(0, 10);
+      const end = str.slice(str.length - 10, str.length);
+      return `${start}...${end}`;
+    }
+    return str;
+  }
+
   useEffect(() => {
     window.addEventListener("resize", handleImageLoad);
     return () => {
@@ -74,7 +83,7 @@ const Display = () => {
 
   return (
     <DisplayDiv>
-      <FileNameDiv>{fileAndData.file && fileAndData.file.name}</FileNameDiv>
+      <FileNameDiv>{fileAndData.file && truncate(fileAndData.file.name)}</FileNameDiv>
       <ImgDiv>
         {imageUrl && (
           <ImageContainer>

@@ -4,7 +4,6 @@ import Display from "../Display/Display";
 import Data from "../Data/Data";
 
 const MainDiv = styled.div`
-  background-color: #bbbbbb;
   height: 80vh;
   width: 100vw;
 

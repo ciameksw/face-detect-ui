@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const ControlsDiv = styled.div`
-  background-color: #aaaaaa;
+  background-color: rgba(0, 0, 0, 0.3);
   height: 10vh;
   width: 100vw;
 `;
@@ -13,16 +13,17 @@ const StyledForm = styled.form`
   align-items: center;
   height: 100%;
   width: 100%;
+  gap: 10vw;
 
   input {
     display: none;
   }
 
   label {
-    display: inline-block;
+    display: block;
     padding: 0.5em 1em;
-    background-color: #4CAF50; /* Green */
-    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
@@ -33,7 +34,7 @@ const StyledForm = styled.form`
   }
 
   label:hover {
-    background-color: #45a049;
+    background-color: rgba(0, 0, 0, 0.3);
   }
 `;
 

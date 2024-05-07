@@ -27,11 +27,17 @@ const Frame = styled.div.attrs<{
   },
 }))`
   position: absolute;
-  border: 2px solid green;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  color: green;
   font-size: 1.2rem;
   font-weight: bold;
+  transition-duration: 0.4s;
+
+  &:hover {
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 `;
 
 const Frames = () => {
