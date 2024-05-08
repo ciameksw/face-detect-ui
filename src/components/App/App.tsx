@@ -25,7 +25,6 @@ const App = () => {
     if (!selectedFile) return;
 
     const res = await detectFaces(selectedFile);
-
     // We only send one photo, so we can safely assume that the first element of the array is the one we want
     setData(res.photos[0]);
   };

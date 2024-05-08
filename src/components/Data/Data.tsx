@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import { FaceDataContext } from "../../contexts/FaceDataContext";
 import { AttributesListType } from "../../types";
@@ -110,8 +110,24 @@ const Confidence = styled.div.attrs<{ confidence: number }>((props) => ({
   height: 100%;
 `;
 
+const loading = keyframes`
+  0% { content: "."; }
+  33% { content: ".."; }
+  66% { content: "..."; }
+  100% { content: "."; }
+`;
+
+const LoadingSpan = styled.span`
+  &:after {
+    content: '...';
+    animation: ${loading} 1s steps(3, end) infinite;
+  }
+`;
+
 const Data = (props: { fileUploader: () => Promise<void> }) => {
   const [data, setData] = useState<Array<AttributesListType>>([]);
+  const [loading, setLoading] = useState(false);
+
   const faceData = useContext(FaceDataContext);
   const fileAndData = useContext(FileAndDataContext);
 
@@ -120,51 +136,77 @@ const Data = (props: { fileUploader: () => Promise<void> }) => {
       const data = mapAttributeValues(faceData.data).sort(
         (a, b) => b.confidence - a.confidence
       );
-
       setData(data);
     }
   }, [faceData?.data]);
 
-  console.log(faceData);
-  console.log(fileAndData);
-
-  const handleDetectFaces = (event: React.FormEvent<HTMLButtonElement>) => {
+  const handleDetectFaces = async (
+    event: React.FormEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
-    props.fileUploader();
+    setLoading(true);
+    await props.fileUploader();
+    setLoading(false);
+  };
+
+  // Render functions
+  const renderDetectFacesButton = () => {
+    if (fileAndData.file && !fileAndData.rawData) {
+      return (
+        <CenterDiv>
+          <button onClick={handleDetectFaces}>Detect faces</button>
+        </CenterDiv>
+      );
+    }
+    return null;
+  };
+  const renderSelectFaceMessage = () => {
+    if (
+      fileAndData.file &&
+      fileAndData.rawData &&
+      faceData &&
+      !faceData.faceNumber
+    ) {
+      return (
+        <CenterDiv>
+          <span>Select a face to see its attributes</span>
+        </CenterDiv>
+      );
+    }
+    return null;
+  };
+  const renderAttributes = () => {
+    return data.map((attribute) => (
+      <Attribute key={attribute.attribute}>
+        {attribute.attribute}: {attribute.value}
+        <Wrapper>
+          <ConfidenceContainer>
+            <Confidence confidence={attribute.confidence} />
+          </ConfidenceContainer>
+          <span>{attribute.confidence}%</span>
+        </Wrapper>
+      </Attribute>
+    ));
   };
 
   return (
     <DataDiv>
       <FaceDiv>
-        {faceData && faceData.faceNumber
-          ? "Face " + faceData.faceNumber
-          : ""}
+        {faceData && faceData.faceNumber ? "Face " + faceData.faceNumber : ""}
       </FaceDiv>
 
       <AttributesDiv>
-        {fileAndData.file && !fileAndData.rawData ? (
+        {loading ? (
           <CenterDiv>
-            <button onClick={handleDetectFaces}>Detect faces</button>
+            <LoadingSpan>Loading</LoadingSpan>
           </CenterDiv>
-        ) : null}
-
-        {fileAndData.file && fileAndData.rawData && faceData && !faceData.faceNumber ? (
-          <CenterDiv>
-            <span>Select a face to see its attributes</span>
-          </CenterDiv>
-        ) : null}
-
-        {data.map((attribute) => (
-          <Attribute key={attribute.attribute}>
-            {attribute.attribute}: {attribute.value}
-            <Wrapper>
-              <ConfidenceContainer>
-                <Confidence confidence={attribute.confidence} />
-              </ConfidenceContainer>
-              <span>{attribute.confidence}%</span>
-            </Wrapper>
-          </Attribute>
-        ))}
+        ) : (
+          <>
+            {renderDetectFacesButton()}
+            {renderSelectFaceMessage()}
+            {renderAttributes()}
+          </>
+        )}
       </AttributesDiv>
     </DataDiv>
   );
