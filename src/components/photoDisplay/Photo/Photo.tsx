@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { FileAndDataContext } from "../../../contexts/FileAndDataContext";
 import Frames from "../Frames/Frames";
 
-const DisplayDiv = styled.div`
+const PhotoDiv = styled.div`
   margin: 0 5vw 2rem 5vw;
   
 `;
@@ -49,7 +49,7 @@ const Overlay = styled.div`
   position: absolute;
 `;
 
-const Display = () => {
+const Photo = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -87,7 +87,7 @@ const Display = () => {
   }, []);
 
   return (
-    <DisplayDiv>
+    <PhotoDiv>
       <FileNameDiv>{fileAndData.file && truncate(fileAndData.file.name)}</FileNameDiv>
       <ImgDiv>
         {imageUrl && (
@@ -104,8 +104,8 @@ const Display = () => {
           </ImageContainer>
         )}
       </ImgDiv>
-    </DisplayDiv>
+    </PhotoDiv>
   );
 };
 
-export default Display;
+export default Photo;

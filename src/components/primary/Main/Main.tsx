@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Display from "../../photoDisplay/Display/Display";
+import Photo from "../../photoDisplay/Photo/Photo";
 import Data from "../../dataDisplay/Data/Data";
 
 const MainDiv = styled.div`
@@ -19,7 +19,7 @@ const MainDiv = styled.div`
 const Main = (props: { fileUploader: () => Promise<void> }) => {
   return (
     <MainDiv>
-      <Display></Display>
+      <Photo></Photo>
       <Data fileUploader={props.fileUploader}></Data>
     </MainDiv>
   );
