@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Photo from "../../photoDisplay/Photo/Photo";
-import Data from "../../dataDisplay/Data/Data";
+import FaceData from "../../dataDisplay/FaceData/FaceData";
 
 const MainContentDiv = styled.div`
   min-height: 80vh;
@@ -20,7 +20,7 @@ const MainContent = (props: { fileUploader: () => Promise<void> }) => {
   return (
     <MainContentDiv>
       <Photo></Photo>
-      <Data fileUploader={props.fileUploader}></Data>
+      <FaceData fileUploader={props.fileUploader}></FaceData>
     </MainContentDiv>
   );
 };
