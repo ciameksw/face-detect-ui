@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { FileAndDataContext } from "../../contexts/FileAndDataContext";
 import { TagType } from "../../types";
-import { AttributesContext } from "../../contexts/AttributesContext";
+import { FaceDataContext } from "../../contexts/FaceDataContext";
 
 const FramesDiv = styled.div`
   width: 100%;
@@ -49,12 +49,12 @@ const Frame = styled.div.attrs<{
 
 const Frames = () => {
   const fileAndData = useContext(FileAndDataContext);
-  const attributes = useContext(AttributesContext);
+  const faceData = useContext(FaceDataContext);
 
   const onFrameClick = (tag: TagType, n: number) => {
-    if (attributes) {
-      attributes.setAttributes(tag.attributes);
-      attributes.setFaceNumber(n);
+    if (faceData) {
+      faceData.setAttributes(tag.attributes);
+      faceData.setFaceNumber(n);
     }
   };
 

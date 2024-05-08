@@ -16,13 +16,13 @@ const MainDiv = styled.div`
   }
 `;
 
-const Main = () => {
-
-
-    return <MainDiv>
-        <Display></Display>
-        <Data></Data>
+const Main = (props: { fileUploader: () => Promise<void> }) => {
+  return (
+    <MainDiv>
+      <Display></Display>
+      <Data fileUploader={props.fileUploader}></Data>
     </MainDiv>
+  );
 };
 
 export default Main;

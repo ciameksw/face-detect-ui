@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const ControlsDiv = styled.div`
+const FileUploadDiv = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
   height: 10vh;
   width: 100vw;
@@ -13,7 +13,6 @@ const StyledForm = styled.form`
   align-items: center;
   height: 100%;
   width: 100%;
-  gap: 25vw;
 
   input {
     display: none;
@@ -42,23 +41,17 @@ const StyledForm = styled.form`
   }
 `;
 
-const Controls = (props: {
+const FileUpload = (props: {
   fileSetter: any;
-  fileUploader: () => Promise<void>;
 }) => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     props.fileSetter(file);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    props.fileUploader();
-  };
-
   return (
-    <ControlsDiv>
-      <StyledForm onSubmit={handleSubmit}>
+    <FileUploadDiv>
+      <StyledForm>
         <input
           type="file"
           name="file"
@@ -66,13 +59,11 @@ const Controls = (props: {
           onChange={handleFileChange}
           accept=".png, .jpg, .jpeg, .bmp, .jp2"
         />
-        <input id="submit" type="submit" value="Detect faces" />
 
         <label htmlFor="file">Choose a file</label>
-        <label htmlFor="submit">Detect faces</label>
       </StyledForm>
-    </ControlsDiv>
+    </FileUploadDiv>
   );
 };
 
-export default Controls;
+export default FileUpload;

@@ -4,7 +4,7 @@ export type FileAndDataType = {
   rawData: PhotoType | null;
 };
 
-export type AttributesContextType = {
+export type FaceDataContextType = {
   data: AttributeType;
   setAttributes: (attributes: AttributeType) => void;
   faceNumber: number | null;

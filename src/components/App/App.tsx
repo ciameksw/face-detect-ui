@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { detectFaces } from "../../api";
-import Controls from "../Controls/Controls";
+import FileUpload from "../FileUpload/FileUpload";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import { AttributeType, PhotoType } from "../../types";
 import { FileAndDataContext } from "../../contexts/FileAndDataContext";
-import { AttributesContext } from "../../contexts/AttributesContext";
+import { FaceDataContext } from "../../contexts/FaceDataContext";
 
 const App = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -31,7 +31,7 @@ const App = () => {
   };
 
   const fileAndData = { file: selectedFile, rawData: data };
-  const attributes = {
+  const faceData = {
     data: currentAttributes,
     setAttributes: setCurrentAttributes,
     faceNumber: faceNumber,
@@ -40,16 +40,15 @@ const App = () => {
 
   return (
     <div>
-      <Controls
+      <FileUpload
         fileSetter={fileSetHandler}
-        fileUploader={fileUploadHandler}
-      ></Controls>
+      ></FileUpload>
       <FileAndDataContext.Provider value={fileAndData}>
-        <AttributesContext.Provider
-          value={attributes}
+        <FaceDataContext.Provider
+          value={faceData}
         >
-          <Main />
-        </AttributesContext.Provider>
+          <Main fileUploader={fileUploadHandler} />
+        </FaceDataContext.Provider>
       </FileAndDataContext.Provider>
       <Footer></Footer>
     </div>

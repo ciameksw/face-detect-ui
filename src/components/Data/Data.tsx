@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
-import { AttributesContext } from "../../contexts/AttributesContext";
+import { FaceDataContext } from "../../contexts/FaceDataContext";
 import { AttributesListType } from "../../types";
 import { mapAttributeValues } from "../../utils";
+import { FileAndDataContext } from "../../contexts/FileAndDataContext";
 
 const DataDiv = styled.div`
-  margin: 0 5vw 2rem  5vw;
+  margin: 0 5vw 2rem 5vw;
 
   overflow-y: auto;
 `;
@@ -21,6 +22,49 @@ const FaceDiv = styled.div`
 
   @media (max-width: 768px) {
     font-size: 1.1rem;
+  }
+`;
+
+const CenterDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    display: block;
+    padding: 0.5em 1em;
+    background-color: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    color: #e3e3e3;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+  }
+
+  button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 0.5em 1em;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
   }
 `;
 
@@ -66,28 +110,50 @@ const Confidence = styled.div.attrs<{ confidence: number }>((props) => ({
   height: 100%;
 `;
 
-const Data = () => {
+const Data = (props: { fileUploader: () => Promise<void> }) => {
   const [data, setData] = useState<Array<AttributesListType>>([]);
-  const attributes = useContext(AttributesContext);
+  const faceData = useContext(FaceDataContext);
+  const fileAndData = useContext(FileAndDataContext);
 
   useEffect(() => {
-    if (attributes) {
-      const data = mapAttributeValues(attributes.data).sort(
+    if (faceData) {
+      const data = mapAttributeValues(faceData.data).sort(
         (a, b) => b.confidence - a.confidence
       );
 
       setData(data);
     }
-  }, [attributes?.data]);
+  }, [faceData?.data]);
+
+  console.log(faceData);
+  console.log(fileAndData);
+
+  const handleDetectFaces = (event: React.FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    props.fileUploader();
+  };
 
   return (
     <DataDiv>
       <FaceDiv>
-        {attributes && attributes.faceNumber
-          ? "Face " + attributes.faceNumber
+        {faceData && faceData.faceNumber
+          ? "Face " + faceData.faceNumber
           : ""}
       </FaceDiv>
+
       <AttributesDiv>
+        {fileAndData.file && !fileAndData.rawData ? (
+          <CenterDiv>
+            <button onClick={handleDetectFaces}>Detect faces</button>
+          </CenterDiv>
+        ) : null}
+
+        {fileAndData.file && fileAndData.rawData && faceData && !faceData.faceNumber ? (
+          <CenterDiv>
+            <span>Select a face to see its attributes</span>
+          </CenterDiv>
+        ) : null}
+
         {data.map((attribute) => (
           <Attribute key={attribute.attribute}>
             {attribute.attribute}: {attribute.value}
