@@ -10,6 +10,10 @@ const Attribute = styled.div`
   width: 100%;
   text-align: center;
   margin-top: 0.8rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const Wrapper = styled.div`
