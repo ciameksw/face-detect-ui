@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Display from "../Display/Display";
-import Data from "../Data/Data";
+import Display from "../../photoDisplay/Display/Display";
+import Data from "../../dataDisplay/Data/Data";
 
 const MainDiv = styled.div`
   min-height: 80vh;

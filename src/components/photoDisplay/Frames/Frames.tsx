@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { FileAndDataContext } from "../../contexts/FileAndDataContext";
-import { TagType } from "../../types";
-import { FaceDataContext } from "../../contexts/FaceDataContext";
+import { FileAndDataContext } from "../../../contexts/FileAndDataContext";
+import { TagType } from "../../../types";
+import { FaceDataContext } from "../../../contexts/FaceDataContext";
 
 const FramesDiv = styled.div`
   width: 100%;

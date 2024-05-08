@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { detectFaces } from "../../api";
-import FileUpload from "../FileUpload/FileUpload";
-import Main from "../Main/Main";
-import Footer from "../Footer/Footer";
+import FileUpload from "../primary/FileUpload/FileUpload";
+import Main from "../primary/Main/Main";
+import Footer from "../primary/Footer/Footer";
 import { AttributeType, PhotoType } from "../../types";
 import { FileAndDataContext } from "../../contexts/FileAndDataContext";
 import { FaceDataContext } from "../../contexts/FaceDataContext";

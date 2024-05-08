@@ -1,9 +1,9 @@
 import styled, { keyframes } from "styled-components";
 import { useContext, useEffect, useState } from "react";
-import { FaceDataContext } from "../../contexts/FaceDataContext";
-import { AttributesListType } from "../../types";
-import { mapAttributeValues } from "../../utils";
-import { FileAndDataContext } from "../../contexts/FileAndDataContext";
+import { FaceDataContext } from "../../../contexts/FaceDataContext";
+import { AttributesListType } from "../../../types";
+import { mapAttributeValues } from "../../../utils";
+import { FileAndDataContext } from "../../../contexts/FileAndDataContext";
 
 const DataDiv = styled.div`
   margin: 0 5vw 2rem 5vw;

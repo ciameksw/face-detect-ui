@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { FileAndDataContext } from "../../contexts/FileAndDataContext";
+import { FileAndDataContext } from "../../../contexts/FileAndDataContext";
 import Frames from "../Frames/Frames";
 
 const DisplayDiv = styled.div`
