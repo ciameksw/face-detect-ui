@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Photo from "../../photoDisplay/Photo/Photo";
 import Data from "../../dataDisplay/Data/Data";
 
-const MainDiv = styled.div`
+const MainContentDiv = styled.div`
   min-height: 80vh;
   width: 100vw;
 
@@ -16,13 +16,13 @@ const MainDiv = styled.div`
   }
 `;
 
-const Main = (props: { fileUploader: () => Promise<void> }) => {
+const MainContent = (props: { fileUploader: () => Promise<void> }) => {
   return (
-    <MainDiv>
+    <MainContentDiv>
       <Photo></Photo>
       <Data fileUploader={props.fileUploader}></Data>
-    </MainDiv>
+    </MainContentDiv>
   );
 };
 
-export default Main;
+export default MainContent;

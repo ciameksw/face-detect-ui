@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { detectFaces } from "../../api";
 import FileUpload from "../primary/FileUpload/FileUpload";
-import Main from "../primary/Main/Main";
+import MainContent from "../primary/MainContent/MainContent";
 import Footer from "../primary/Footer/Footer";
 import { AttributeType, PhotoType } from "../../types";
 import { FileAndDataContext } from "../../contexts/FileAndDataContext";
@@ -46,7 +46,7 @@ const App = () => {
         <FaceDataContext.Provider
           value={faceData}
         >
-          <Main fileUploader={fileUploadHandler} />
+          <MainContent fileUploader={fileUploadHandler} />
         </FaceDataContext.Provider>
       </FileAndDataContext.Provider>
       <Footer></Footer>

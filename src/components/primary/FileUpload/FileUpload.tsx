@@ -37,7 +37,7 @@ const StyledForm = styled.form`
   }
 
   label:hover {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.2);
   }
 `;
 
