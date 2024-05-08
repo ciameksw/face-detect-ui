@@ -4,12 +4,16 @@ import Display from "../Display/Display";
 import Data from "../Data/Data";
 
 const MainDiv = styled.div`
-  height: 80vh;
+  min-height: 80vh;
   width: 100vw;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Main = () => {

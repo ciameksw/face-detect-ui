@@ -4,7 +4,8 @@ import { FileAndDataContext } from "../../contexts/FileAndDataContext";
 import Frames from "../Frames/Frames";
 
 const DisplayDiv = styled.div`
-  margin: 0 5vw;
+  margin: 0 5vw 2rem 5vw;
+  
 `;
 
 const FileNameDiv = styled.div`
@@ -15,6 +16,10 @@ const FileNameDiv = styled.div`
   text-align: center;
   font-size: 1.6rem;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const ImgDiv = styled.div`

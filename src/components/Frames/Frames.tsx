@@ -27,16 +27,23 @@ const Frame = styled.div.attrs<{
   },
 }))`
   position: absolute;
-  border: 2px solid rgba(0, 0, 0, 0.5);
-  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px dashed #e3e3e3;
+  box-shadow: 0 0 0 2px #000000;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: bold;
   transition-duration: 0.4s;
+
+  color: #e3e3e3;
+  text-shadow: 4px 4px 6px #000000;
 
   &:hover {
     border: 2px solid rgba(0, 0, 0, 0.3);
     background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
   }
 `;
 

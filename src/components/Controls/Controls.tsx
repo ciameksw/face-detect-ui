@@ -13,7 +13,7 @@ const StyledForm = styled.form`
   align-items: center;
   height: 100%;
   width: 100%;
-  gap: 10vw;
+  gap: 25vw;
 
   input {
     display: none;
@@ -26,11 +26,15 @@ const StyledForm = styled.form`
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 1.2rem;
     transition-duration: 0.4s;
     cursor: pointer;
     border: none;
     border-radius: 4px;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
   }
 
   label:hover {

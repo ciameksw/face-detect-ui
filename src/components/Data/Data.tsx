@@ -5,7 +5,7 @@ import { AttributesListType } from "../../types";
 import { mapAttributeValues } from "../../utils";
 
 const DataDiv = styled.div`
-  margin: 0 5vw;
+  margin: 0 5vw 2rem  5vw;
 
   overflow-y: auto;
 `;
@@ -18,6 +18,10 @@ const FaceDiv = styled.div`
   text-align: center;
   font-size: 1.6rem;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const AttributesDiv = styled.div`
