@@ -29,14 +29,19 @@ const SelectFaceMessage = () => {
 
   const shouldDisplayMessage =
     fileAndData.file && fileAndData.rawData && faceData && !faceData.faceNumber;
-  if (shouldDisplayMessage) {
-    return (
-      <MessageDiv>
-        <span>Select a face to see its attributes</span>
-      </MessageDiv>
-    );
-  }
-  return null;
+
+  if (!shouldDisplayMessage) return null;
+
+  const message =
+    fileAndData.rawData && fileAndData.rawData.tags.length > 0
+      ? "Select a face to see its attributes"
+      : "No faces detected";
+
+  return (
+    <MessageDiv>
+      <span>{message}</span>
+    </MessageDiv>
+  );
 };
 
 export default SelectFaceMessage;
