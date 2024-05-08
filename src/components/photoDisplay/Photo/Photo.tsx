@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { FileAndDataContext } from "../../../contexts/FileAndDataContext";
 import Frames from "../Frames/Frames";
+import { truncate } from "../../../utils";
 
 const PhotoDiv = styled.div`
   margin: 0 5vw 2rem 5vw;
@@ -69,15 +70,6 @@ const Photo = () => {
       overlayRef.current.style.height = `${height}px`;
     }
   };
-
-  const truncate = (str: string) => {
-    if (str.length > 25) {
-      const start = str.slice(0, 10);
-      const end = str.slice(str.length - 10, str.length);
-      return `${start}...${end}`;
-    }
-    return str;
-  }
 
   useEffect(() => {
     window.addEventListener("resize", handleImageLoad);

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { AttributesListType } from "../../../types";
 import { FaceDataContext } from "../../../contexts/FaceDataContext";
-import { mapAttributeValues } from "../../../utils";
+import { mapAttributeValues, snakeToTitle } from "../../../utils";
 
 const Attribute = styled.div`
   font-size: 1.2rem;
@@ -16,10 +16,14 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 0.3rem;
+`;
 
-  & span {
-    padding-right: 1rem;
-    padding-bottom: 0.3rem;
+const Helper = styled.div`
+  width: 20%;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
   }
 `;
 
@@ -29,6 +33,7 @@ const ConfidenceContainer = styled.div`
   height: 1rem;
   width: 85%;
   margin-left: 1rem;
+  position: relative;
 `;
 
 const Confidence = styled.div.attrs<{ confidence: number }>((props) => ({
@@ -37,6 +42,15 @@ const Confidence = styled.div.attrs<{ confidence: number }>((props) => ({
   background-color: #e3e3e3;
   border-radius: 5px;
   height: 100%;
+`;
+
+const Marker = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  transform: translateX(-50%);
 `;
 
 const Attributes = () => {
@@ -55,14 +69,18 @@ const Attributes = () => {
 
   return (
     <div>
-      {data.map((attribute) => (
-        <Attribute key={attribute.attribute}>
-          {attribute.attribute}: {attribute.value}
+      {data.map((el) => (
+        <Attribute key={el.attribute}>
+          {snakeToTitle(el.attribute)}: {snakeToTitle(el.value)}
           <Wrapper>
+            <Helper />
             <ConfidenceContainer>
-              <Confidence confidence={attribute.confidence} />
+              <Marker style={{ left: "25%" }} />
+              <Marker style={{ left: "50%" }} />
+              <Marker style={{ left: "75%" }} />
+              <Confidence confidence={el.confidence} />
             </ConfidenceContainer>
-            <span>{attribute.confidence}%</span>
+            <Helper>{el.confidence}%</Helper>
           </Wrapper>
         </Attribute>
       ))}
