@@ -23,7 +23,7 @@ const Frame = styled.div.attrs<{
     left: `${props.center.x - props.width / 2}%`,
     width: `${props.width}%`,
     height: `${props.height}%`,
-    transform: `rotateX(${props.pitch}deg) rotateY(${props.yaw}deg) rotateZ(${props.roll}deg)`, // TODO - check if this is correct
+    transform: `rotateX(${props.pitch}deg) rotateY(${props.yaw}deg) rotateZ(${props.roll}deg)`,
   },
 }))`
   position: absolute;
